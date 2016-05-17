@@ -88,7 +88,7 @@ while True:
     player.toggle_pause();
 
   if (buttons & cwiid.BTN_A):
-    
+    player.stop_video()
 
   if (buttons & cwiid.BTN_DOWN):
     play_wav(prefix + schools[1])
