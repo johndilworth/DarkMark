@@ -3,6 +3,7 @@ import cwiid
 import time
 import random
 import threading
+from omxplayer import OMXPlayer
 
 from pygame import mixer
 
@@ -39,6 +40,10 @@ def play_wav(file):
 		mixer.music.load(file)
 		mixer.music.play()
 		mixer.music.set_endevent()
+def play_video(file):
+	player = OMXPlayer(file)
+	player.play()
+	player.quit()
 
 wii = connect_wimote()
 time.sleep(1)
@@ -55,12 +60,11 @@ for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
 wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
-mixer.init() 
-prefix = "schools/"
-thinking_prefix = "thinking/"
-schools = ["griffindor.wav", "slytherin.wav", "hufflepuff.wav", "ravenclaw.wav"]
-song = ["sort1.wav", "sort3.wav", "sort4.wav"]
-thinking = "think.wav"
+mixer.init()
+prefix = "videos/"
+effects_prefix = "effects/"
+videos = ["stag.mp4","dark-mark.mp4"]
+effects = ["ambient1.wav", "ambient2.wav", "ambient3.wav"]
 used_sec = 0
 
 while True:
@@ -68,30 +72,29 @@ while True:
   if(sec % validation_sec == 0 and sec != used_sec):
 	wii = validate_connection(wii)
 	used_sec = sec
-	
+
   buttons = wii.state['buttons']
 
   if (buttons & cwiid.BTN_PLUS):
     play_wav(thinking_prefix + thinking)
 
   if (buttons & cwiid.BTN_B):
-    play_wav(thinking_prefix + random.choice(song))
+    play_video('videos/dark-mark.mp4')
 
   if (buttons & cwiid.BTN_A):
     play_wav(prefix + random.choice(schools))
-  
+
   if (buttons & cwiid.BTN_DOWN):
     play_wav(prefix + schools[1])
-  
+
   if (buttons & cwiid.BTN_RIGHT):
     play_wav(prefix + schools[2])
-  
+
   if (buttons & cwiid.BTN_LEFT):
     play_wav(prefix + schools[3])
-  
+
   if (buttons & cwiid.BTN_UP):
     play_wav(prefix + schools[0])
 
   if (buttons & cwiid.BTN_MINUS):
     mixer.music.stop()
-
