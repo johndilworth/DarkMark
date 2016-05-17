@@ -65,6 +65,7 @@ wii.rpt_mode = cwiid.RPT_BTN
 
 player = OMXPlayer('videos/dark-mark.mp4', '-o local')
 player.toggle_pause()
+
 mixer.init()
 prefix = "videos/"
 effects_prefix = "effects/"
@@ -84,10 +85,10 @@ while True:
     play_wav(thinking_prefix + thinking)
 
   if (buttons & cwiid.BTN_B):
-    play_video('videos/dark-mark.mp4')
+    player.toggle_pause();
 
   if (buttons & cwiid.BTN_A):
-    stop_video()
+    
 
   if (buttons & cwiid.BTN_DOWN):
     play_wav(prefix + schools[1])

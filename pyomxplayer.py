@@ -53,7 +53,7 @@ class OMXPlayer(object):
 
         if not start_playback:
             self.toggle_pause()
-        self.toggle_subtitles()
+        # self.toggle_subtitles()
 
 
     def _get_position(self):
