@@ -41,9 +41,11 @@ def play_wav(file):
 		mixer.music.play()
 		mixer.music.set_endevent()
 def play_video(file):
+	print("playing video")
 	OMXPlayer("videos/dark-mark.mp4")
 
 def stop_video():
+	print("stopping")
 	OMXPlayer.stop()
 
 
