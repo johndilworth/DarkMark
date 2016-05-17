@@ -42,6 +42,8 @@ def play_wav(file):
 		mixer.music.set_endevent()
 def play_video(file):
 	player = OMXPlayer(file)
+def stop_video()
+	player.stop();
 
 
 wii = connect_wimote()
@@ -81,7 +83,7 @@ while True:
     play_video('videos/dark-mark.mp4')
 
   if (buttons & cwiid.BTN_A):
-    play_wav(prefix + random.choice(schools))
+    stop_video()
 
   if (buttons & cwiid.BTN_DOWN):
     play_wav(prefix + schools[1])
