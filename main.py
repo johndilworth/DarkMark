@@ -41,10 +41,10 @@ def play_wav(file):
 		mixer.music.play()
 		mixer.music.set_endevent()
 def play_video(file):
-	player.init("videos/dark-mark.mp4")
+	OMXPlayer("videos/dark-mark.mp4")
 
 def stop_video():
-	player.stop()
+	OMXPlayer.stop()
 
 
 wii = connect_wimote()
@@ -62,7 +62,7 @@ for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
 wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
-player = OMXPlayer.init()
+
 mixer.init()
 prefix = "videos/"
 effects_prefix = "effects/"
