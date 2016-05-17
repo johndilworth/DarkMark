@@ -1,16 +1,13 @@
-SortingHat
-==========
-
-Audio player that uses Wiimote for prompting.
+# Dark Mark
+Video and audio player that uses Wiimote for prompting.
 
 Use:  
-  1. Sorting hat is presented
-  2. Sorting hat introduces itself - (attendant pushes button on wiimote that makes plays sorting hat song)
-  3. Student sits down - attendant puts the sorting hat on their head.
-  4. Sorting hat thinks for a while (attendant pushes button on wiimote that makes thinking sound play)
-  5. Sorting hat chooses a school for student - (attendant pushes button that makes school sound play)
-   
-  
+1. Spell to conjur the Dark Mark is presented
+2. Student repeats the Dark Mark spell and points wand towards screen - (attendant pushes button on wiimote that makes Dark Mark appear)
+3. Dark Mark appears on screen
+4. Dark Mark is interrupted by Expecto Patronum Spell (attendant pushes button on wiimote that makes patrunus appear)
+5. Various sound effects can be called by pressing various buttons on remote.
+
 Hardware:
-  * Raspberry Pi
-  * WiiMote
+- Raspberry Pi
+- WiiMote
