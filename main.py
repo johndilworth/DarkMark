@@ -3,7 +3,7 @@ import cwiid
 import time
 import random
 import threading
-from omxplayer import OMXPlayer
+from pyomxplayer import OMXPlayer
 
 from pygame import mixer
 
@@ -42,8 +42,7 @@ def play_wav(file):
 		mixer.music.set_endevent()
 def play_video(file):
 	player = OMXPlayer(file)
-	player.play()
-	player.quit()
+
 
 wii = connect_wimote()
 time.sleep(1)
