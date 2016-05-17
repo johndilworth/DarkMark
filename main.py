@@ -63,7 +63,7 @@ for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
 wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
-player = OMXPlayer('videos/dark-mark.mp4', '-o local', start_playback=False)
+player = OMXPlayer('videos/dark-mark.mp4', '-o local')
 player.toggle_pause()
 mixer.init()
 prefix = "videos/"
