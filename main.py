@@ -42,7 +42,8 @@ def play_wav(file):
 		mixer.music.set_endevent()
 def play_video(file):
 	player = OMXPlayer(file)
-def stop_video
+
+def stop_video():
 	player.stop()
 
 
