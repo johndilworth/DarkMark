@@ -119,12 +119,12 @@ while True:
 
   if (buttons & cwiid.BTN_2):
     print 'Button 2 pressed'
-	time.sleep(button_delay)
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_A):
 	print 'Button A pressed'
-	time.sleep(button_delay)
-	player = OMXPlayer('videos/stag.mp4', '-o local')
+    time.sleep(button_delay)
+    player = OMXPlayer('videos/stag.mp4', '-o local')
 
 
   if (buttons & cwiid.BTN_B):
