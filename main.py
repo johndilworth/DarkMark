@@ -6,7 +6,7 @@ import threading
 from pyomxplayer import OMXPlayer
 
 from pygame import mixer
-button_delay = 0.1
+button_delay = 0.6
 
 #black backgroud left transparent during development
 BACKGROUND = (0.0,0.0,0.0,1.0)
