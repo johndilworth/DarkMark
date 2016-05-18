@@ -9,19 +9,29 @@ from pygame import mixer
 
 
 button_delay = 0.6
-
-# #black backgroud left transparent during development
-# BACKGROUND = (0.0,0.0,0.0,1.0)
-#
-# #set display, this is fullscreen but I really don't know why or how
-# DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
-# #not a clue what this does
-# shader = pi3d.Shader("uv_flat")
-
-alpha_step_out = 0.03
-
-
 validation_sec = 5
+
+def connect_wimote():
+	try:
+		print 'Press 1 + 2 on your Wii Remote now ...'
+		time.sleep(1)
+		wiimote = cwiid.Wiimote()
+	except RuntimeError:
+		return connect_wimote()
+
+	print 'Wii Remote connected...\n'
+	wiimote.led = 6
+	wiimote.rpt_mode = cwiid.RPT_BTN
+	return wiimote
+
+def validate_connection(wiimote):
+	try:
+		wiimote.request_status()
+		return wiimote
+	except RuntimeError:
+		print "Disconnected - reconnecting"
+		wiimote = connect_wimote()
+	return wiimote
 
 # Connect to the Wii Remote. If it times out
 # then quit.
@@ -45,29 +55,6 @@ wii.rpt_mode = cwiid.RPT_BTN
 mixer.init()
 
 used_sec = 0
-
-
-def connect_wimote():
-	try:
-		print 'Press 1 + 2 on your Wii Remote now ...'
-		time.sleep(1)
-		wiimote = cwiid.Wiimote()
-	except RuntimeError:
-		return connect_wimote()
-
-	print 'Wii Remote connected...\n'
-	wiimote.led = 6
-	wiimote.rpt_mode = cwiid.RPT_BTN
-	return wiimote
-
-def validate_connection(wiimote):
-	try:
-		wiimote.request_status()
-		return wiimote
-	except RuntimeError:
-		print "Disconnected - reconnecting"
-		wiimote = connect_wimote()
-	return wiimote
 
 # play functions for audio files and for videos
 def play_wav(file):
