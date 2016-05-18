@@ -10,13 +10,13 @@ from pygame import mixer
 
 button_delay = 0.6
 
-#black backgroud left transparent during development
-BACKGROUND = (0.0,0.0,0.0,1.0)
-
-#set display, this is fullscreen but I really don't know why or how
-DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
-#not a clue what this does
-shader = pi3d.Shader("uv_flat")
+# #black backgroud left transparent during development
+# BACKGROUND = (0.0,0.0,0.0,1.0)
+#
+# #set display, this is fullscreen but I really don't know why or how
+# DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
+# #not a clue what this does
+# shader = pi3d.Shader("uv_flat")
 
 alpha_step_out = 0.03
 
