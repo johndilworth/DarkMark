@@ -79,52 +79,52 @@ while True:
 		wii = validate_connection(wii)
 		used_sec = sec
 
-buttons = wii.state['buttons']
+	buttons = wii.state['buttons']
 
-# Check if other buttons are pressed by
-# doing a bitwise AND of the buttons number
-# and the predefined constant for that button.
-if (buttons & cwiid.BTN_LEFT):
-	print 'Left pressed'
-	time.sleep(button_delay)
+	# Check if other buttons are pressed by
+	# doing a bitwise AND of the buttons number
+	# and the predefined constant for that button.
+	if (buttons & cwiid.BTN_LEFT):
+		print 'Left pressed'
+		time.sleep(button_delay)
 
-if(buttons & cwiid.BTN_RIGHT):
-	print 'Right pressed'
-	time.sleep(button_delay)
+	if(buttons & cwiid.BTN_RIGHT):
+		print 'Right pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_UP):
-	print 'Up pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_UP):
+		print 'Up pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_DOWN):
-	print 'Down pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_DOWN):
+		print 'Down pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_1):
-	print 'Button 1 pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_1):
+		print 'Button 1 pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_2):
-	print 'Button 2 pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_2):
+		print 'Button 2 pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_A):
-	player = OMXPlayer('videos/stag.mp4', '-o local')
-	print 'Button A pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_A):
+		player = OMXPlayer('videos/stag.mp4', '-o local')
+		print 'Button A pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_B):
-	print 'Button B pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_B):
+		print 'Button B pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_HOME):
-	print 'Home Button pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_HOME):
+		print 'Home Button pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_MINUS):
-	print 'Minus Button pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_MINUS):
+		print 'Minus Button pressed'
+		time.sleep(button_delay)
 
-if (buttons & cwiid.BTN_PLUS):
-	print 'Plus Button pressed'
-	time.sleep(button_delay)
+	if (buttons & cwiid.BTN_PLUS):
+		print 'Plus Button pressed'
+		time.sleep(button_delay)
