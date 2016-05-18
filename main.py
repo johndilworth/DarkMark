@@ -7,6 +7,7 @@ import threading
 from pyomxplayer import OMXPlayer
 
 from pygame import mixer
+
 button_delay = 0.6
 
 #black backgroud left transparent during development
@@ -123,8 +124,6 @@ while True:
   if (buttons & cwiid.BTN_A):
 	print 'Button A pressed'
 	player = OMXPlayer('videos/stag.mp4', '-o local')
-	player.toggle_pause()
-
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_B):
