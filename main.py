@@ -27,53 +27,53 @@ validation_sec = 5
 # then quit.
 
 def connect_wimote():
-	try:
-		print 'Press 1 + 2 on your Wii Remote now ...'
-		time.sleep(1)
-  		wiimote = cwiid.Wiimote()
-	except RuntimeError:
-		return connect_wimote()
+    try:
+        print 'Press 1 + 2 on your Wii Remote now ...'
+        time.sleep(1)
+          wiimote = cwiid.Wiimote()
+    except RuntimeError:
+        return connect_wimote()
 
-	print 'Wii Remote connected...\n'
-	wiimote.led = 6
-	wiimote.rpt_mode = cwiid.RPT_BTN
-	return wiimote
+    print 'Wii Remote connected...\n'
+    wiimote.led = 6
+    wiimote.rpt_mode = cwiid.RPT_BTN
+    return wiimote
 
 def validate_connection(wiimote):
-	try:
-		wiimote.request_status()
-		return wiimote
-	except RuntimeError:
-		print "Disconnected - reconnecting"
-		wiimote = connect_wimote()
-	return wiimote
+    try:
+        wiimote.request_status()
+        return wiimote
+    except RuntimeError:
+        print "Disconnected - reconnecting"
+        wiimote = connect_wimote()
+    return wiimote
 
 def play_wav(file):
-	if(mixer.music.get_busy() == 0):
-		print(file)
-		mixer.music.load(file)
-		mixer.music.play()
-		mixer.music.set_endevent()
+    if(mixer.music.get_busy() == 0):
+        print(file)
+        mixer.music.load(file)
+        mixer.music.play()
+        mixer.music.set_endevent()
 def play_video(file):
-	print("playing video")
-	player.toggle_pause()
+    print("playing video")
+    player.toggle_pause()
 
 def stop_video():
-	player.stop()
+    player.stop()
 
 
 wii = connect_wimote()
 time.sleep(1)
 for i in range(4):
-	wii.rumble = True
-	time.sleep(.1)
-	wii.rumble = False
-	time.sleep(.1)
+    wii.rumble = True
+    time.sleep(.1)
+    wii.rumble = False
+    time.sleep(.1)
 wii.led = 0
 time.sleep(1)
 for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
-	wii.led = i
-	time.sleep(.1)
+    wii.led = i
+    time.sleep(.1)
 wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
@@ -87,58 +87,57 @@ effects = ["ambient1.wav", "ambient2.wav", "ambient3.wav"]
 used_sec = 0
 
 while True:
-  sec = time.localtime(time.time()).tm_sec
-  if(sec % validation_sec == 0 and sec != used_sec):
-	wii = validate_connection(wii)
-	used_sec = sec
+    sec = time.localtime(time.time()).tm_sec
+    if(sec % validation_sec == 0 and sec != used_sec):
+        wii = validate_connection(wii)
+        used_sec = sec
 
-  buttons = wii.state['buttons']
+buttons = wii.state['buttons']
 
- # Check if other buttons are pressed by
-  # doing a bitwise AND of the buttons number
-  # and the predefined constant for that button.
-  if (buttons & cwiid.BTN_LEFT):
+# Check if other buttons are pressed by
+# doing a bitwise AND of the buttons number
+# and the predefined constant for that button.
+if (buttons & cwiid.BTN_LEFT):
     print 'Left pressed'
     time.sleep(button_delay)
 
-  if(buttons & cwiid.BTN_RIGHT):
+if(buttons & cwiid.BTN_RIGHT):
     print 'Right pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_UP):
+if (buttons & cwiid.BTN_UP):
     print 'Up pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_DOWN):
+if (buttons & cwiid.BTN_DOWN):
     print 'Down pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_1):
+if (buttons & cwiid.BTN_1):
     print 'Button 1 pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_2):
+if (buttons & cwiid.BTN_2):
     print 'Button 2 pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_A):
-	print 'Button A pressed'
-    time.sleep(button_delay)
+if (buttons & cwiid.BTN_A):
+    print 'Button A pressed'
     player = OMXPlayer('videos/stag.mp4', '-o local')
+    time.sleep(button_delay)
 
-
-  if (buttons & cwiid.BTN_B):
+if (buttons & cwiid.BTN_B):
     print 'Button B pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_HOME):
+if (buttons & cwiid.BTN_HOME):
     print 'Home Button pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_MINUS):
+if (buttons & cwiid.BTN_MINUS):
     print 'Minus Button pressed'
     time.sleep(button_delay)
 
-  if (buttons & cwiid.BTN_PLUS):
+if (buttons & cwiid.BTN_PLUS):
     print 'Plus Button pressed'
     time.sleep(button_delay)
