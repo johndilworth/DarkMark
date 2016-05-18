@@ -6,6 +6,13 @@ import threading
 from pyomxplayer import OMXPlayer
 
 from pygame import mixer
+button_delay = 0.1
+
+#black backgroud left transparent during development
+BACKGROUND = (0.0,0.0,0.0,1.0)
+
+#set display, this is fullscreen but I really don't know why or how
+DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
 
 validation_sec = 5
 
@@ -81,26 +88,49 @@ while True:
 
   buttons = wii.state['buttons']
 
-  if (buttons & cwiid.BTN_PLUS):
-    play_wav(thinking_prefix + thinking)
-
-  if (buttons & cwiid.BTN_B):
-    player.toggle_pause();
-
-  if (buttons & cwiid.BTN_A):
-    player.stop_video()
-
-  if (buttons & cwiid.BTN_DOWN):
-    play_wav(prefix + schools[1])
-
-  if (buttons & cwiid.BTN_RIGHT):
-    play_wav(prefix + schools[2])
-
+ # Check if other buttons are pressed by
+  # doing a bitwise AND of the buttons number
+  # and the predefined constant for that button.
   if (buttons & cwiid.BTN_LEFT):
-    play_wav(prefix + schools[3])
+    print 'Left pressed'
+    time.sleep(button_delay)
+
+  if(buttons & cwiid.BTN_RIGHT):
+    print 'Right pressed'
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_UP):
-    play_wav(prefix + schools[0])
+    print 'Up pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_DOWN):
+    print 'Down pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_1):
+    print 'Button 1 pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_2):
+    print 'Button 2 pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_A):
+    print 'Button A pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_B):
+    print 'Button B pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_HOME):
+    print 'Home Button pressed'
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_MINUS):
-    mixer.music.stop()
+    print 'Minus Button pressed'
+    time.sleep(button_delay)
+
+  if (buttons & cwiid.BTN_PLUS):
+    print 'Plus Button pressed'
+    time.sleep(button_delay)
