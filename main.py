@@ -5,7 +5,14 @@ import random
 import pi3d
 import threading
 from pyomxplayer import OMXPlayer
+import pygame
 from pygame import mixer
+
+
+pygame.init()
+pygame.mouse.set_visible(False)
+screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+screen.fill((0,0,0))
 
 
 button_delay = 0.6
@@ -56,8 +63,8 @@ mixer.init()
 
 used_sec = 0
 
-player = OMXPlayer('videos/stag.mp4', '-o local')
-player.toggle_pause();
+# player = OMXPlayer('videos/stag.mp4', '-o local')
+# player.toggle_pause()
 # #black backgroud left transparent during development
 # BACKGROUND = (0.0,0.0,0.0,1.0)
 # #set display, this is fullscreen but I really don't know why or how
@@ -82,8 +89,9 @@ def play_video(file):
 def stop_video():
 	player.stop()
 
+done=False
 
-while True:
+while not done:
 	sec = time.localtime(time.time()).tm_sec
 	if(sec % validation_sec == 0 and sec != used_sec):
 		wii = validate_connection(wii)
@@ -124,7 +132,7 @@ while True:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_B):
-		player = OMXPlayer('videos/dark-mark.mp4', '-o local')		
+		player = OMXPlayer('videos/dark-mark.mp4', '-o local')
 		print 'Button B pressed'
 		time.sleep(button_delay)
 
@@ -139,3 +147,13 @@ while True:
 	if (buttons & cwiid.BTN_PLUS):
 		print 'Plus Button pressed'
 		time.sleep(button_delay)
+
+	for event in pygame.event.get():
+		if event.type==pygame.QUIT:
+			done = True
+		elif event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_ESCAPE:
+				done = True
+		time.sleep(0.01)
+
+pygame.quit()
