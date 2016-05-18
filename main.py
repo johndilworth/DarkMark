@@ -56,13 +56,15 @@ mixer.init()
 
 used_sec = 0
 
-#black backgroud left transparent during development
-BACKGROUND = (0.0,0.0,0.0,1.0)
-#set display, this is fullscreen but I really don't know why or how
-DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
-#not a clue what this does
-shader = pi3d.Shader("uv_flat")
-alpha_step_out = 0.03
+player = OMXPlayer('videos/stag.mp4', '-o local')
+player.toggle_pause();
+# #black backgroud left transparent during development
+# BACKGROUND = (0.0,0.0,0.0,1.0)
+# #set display, this is fullscreen but I really don't know why or how
+# DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
+# #not a clue what this does
+# shader = pi3d.Shader("uv_flat")
+# alpha_step_out = 0.03
 
 # play functions for audio files and for videos
 def play_wav(file):
@@ -122,6 +124,7 @@ while True:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_B):
+		player = OMXPlayer('videos/dark-mark.mp4', '-o local')		
 		print 'Button B pressed'
 		time.sleep(button_delay)
 
