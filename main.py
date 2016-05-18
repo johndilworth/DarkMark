@@ -14,6 +14,11 @@ BACKGROUND = (0.0,0.0,0.0,1.0)
 
 #set display, this is fullscreen but I really don't know why or how
 DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
+#not a clue what this does
+shader = pi3d.Shader("uv_flat")
+
+alpha_step_out = 0.03
+
 
 validation_sec = 5
 
@@ -71,8 +76,7 @@ for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
 wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
-player = OMXPlayer('videos/dark-mark.mp4', '-o local')
-player.toggle_pause()
+
 
 mixer.init()
 prefix = "videos/"
@@ -117,7 +121,10 @@ while True:
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_A):
-    print 'Button A pressed'
+	print 'Button A pressed'
+	player = OMXPlayer('videos/stag.mp4', '-o local')
+	player.toggle_pause()
+
     time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_B):
