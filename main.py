@@ -25,7 +25,6 @@ validation_sec = 5
 
 # Connect to the Wii Remote. If it times out
 # then quit.
-
 wii = connect_wimote()
 time.sleep(1)
 
@@ -52,7 +51,7 @@ def connect_wimote():
 	try:
 		print 'Press 1 + 2 on your Wii Remote now ...'
 		time.sleep(1)
-		  wiimote = cwiid.Wiimote()
+		wiimote = cwiid.Wiimote()
 	except RuntimeError:
 		return connect_wimote()
 
