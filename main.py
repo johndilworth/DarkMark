@@ -2,6 +2,7 @@
 import cwiid
 import time
 import random
+import pi3d
 import threading
 from pyomxplayer import OMXPlayer
 
