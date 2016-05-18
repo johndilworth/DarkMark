@@ -5,8 +5,8 @@ import random
 import pi3d
 import threading
 from pyomxplayer import OMXPlayer
-
 from pygame import mixer
+
 
 button_delay = 0.6
 
@@ -25,6 +25,26 @@ validation_sec = 5
 
 # Connect to the Wii Remote. If it times out
 # then quit.
+
+wii = connect_wimote()
+time.sleep(1)
+for i in range(4):
+    wii.rumble = True
+    time.sleep(.1)
+    wii.rumble = False
+    time.sleep(.1)
+wii.led = 0
+time.sleep(1)
+for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
+    wii.led = i
+    time.sleep(.1)
+wii.led = 6
+wii.rpt_mode = cwiid.RPT_BTN
+
+mixer.init()
+
+used_sec = 0
+
 
 def connect_wimote():
     try:
@@ -48,12 +68,15 @@ def validate_connection(wiimote):
         wiimote = connect_wimote()
     return wiimote
 
+# play functions for audio files and for videos
 def play_wav(file):
     if(mixer.music.get_busy() == 0):
         print(file)
         mixer.music.load(file)
         mixer.music.play()
         mixer.music.set_endevent()
+
+# not using these at all right now, but maybe I will
 def play_video(file):
     print("playing video")
     player.toggle_pause()
@@ -61,30 +84,6 @@ def play_video(file):
 def stop_video():
     player.stop()
 
-
-wii = connect_wimote()
-time.sleep(1)
-for i in range(4):
-    wii.rumble = True
-    time.sleep(.1)
-    wii.rumble = False
-    time.sleep(.1)
-wii.led = 0
-time.sleep(1)
-for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
-    wii.led = i
-    time.sleep(.1)
-wii.led = 6
-wii.rpt_mode = cwiid.RPT_BTN
-
-
-
-mixer.init()
-prefix = "videos/"
-effects_prefix = "effects/"
-videos = ["stag.mp4","dark-mark.mp4"]
-effects = ["ambient1.wav", "ambient2.wav", "ambient3.wav"]
-used_sec = 0
 
 while True:
     sec = time.localtime(time.time()).tm_sec
