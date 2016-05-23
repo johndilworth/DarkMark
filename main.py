@@ -101,7 +101,7 @@ while not done:
 
 	# If Plus and Minus buttons pressed
   # together then rumble and quit.
-	if (buttons - cwiid.BTN_PLUS - cwiid.BTN_MINUS == 0
+	if (buttons - cwiid.BTN_PLUS - cwiid.BTN_MINUS == 0):
 		print 'Closing connection ...'
 		wii.rumble = 1
 		time.sleep(1)
