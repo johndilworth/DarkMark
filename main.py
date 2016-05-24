@@ -125,6 +125,7 @@ while not done:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_2):
+		play_wav('effects/sadtrumbone.wav')
 		print 'Button 2 pressed'
 		time.sleep(button_delay)
 
