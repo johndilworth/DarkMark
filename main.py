@@ -40,6 +40,23 @@ def validate_connection(wiimote):
 		wiimote = connect_wimote()
 	return wiimote
 
+
+# play functions for audio files and for videos
+def play_wav(file):
+	if(mixer.music.get_busy() == 0):
+		print(file)
+		mixer.music.load(file)
+		mixer.music.play()
+		mixer.music.set_endevent()
+
+# not using these at all right now, but maybe I will
+def play_video(file):
+	print("playing video")
+	player.toggle_pause()
+
+def stop_video():
+	player.stop()
+
 # Connect to the Wii Remote. If it times out
 # then quit.
 wii = connect_wimote()
@@ -63,31 +80,6 @@ mixer.init()
 
 used_sec = 0
 
-# player = OMXPlayer('videos/stag.mp4', '-o local')
-# player.toggle_pause()
-# #black backgroud left transparent during development
-# BACKGROUND = (0.0,0.0,0.0,1.0)
-# #set display, this is fullscreen but I really don't know why or how
-# DISPLAY = pi3d.Display.create(background=BACKGROUND,x=0, y=0, frames_per_second=15)
-# #not a clue what this does
-# shader = pi3d.Shader("uv_flat")
-# alpha_step_out = 0.03
-
-# play functions for audio files and for videos
-def play_wav(file):
-	if(mixer.music.get_busy() == 0):
-		print(file)
-		mixer.music.load(file)
-		mixer.music.play()
-		mixer.music.set_endevent()
-
-# not using these at all right now, but maybe I will
-def play_video(file):
-	print("playing video")
-	player.toggle_pause()
-
-def stop_video():
-	player.stop()
 
 done=False
 
@@ -128,8 +120,8 @@ while not done:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_1):
-		print 'Button 1 pressed'
 		play_wav('effects/thunder.wav')
+		print 'Button 1 pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_2):
