@@ -129,6 +129,7 @@ while not done:
 
 	if (buttons & cwiid.BTN_1):
 		print 'Button 1 pressed'
+		play_wav('effects/thunder.wav')
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_2):
@@ -152,6 +153,9 @@ while not done:
 	if (buttons & cwiid.BTN_MINUS):
 		print 'Minus Button pressed'
 		time.sleep(button_delay)
+		# stop any music or video files that might be playing
+		player.stop()
+		mixer.music.stop()
 
 	if (buttons & cwiid.BTN_PLUS):
 		print 'Plus Button pressed'
