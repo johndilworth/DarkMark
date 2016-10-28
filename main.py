@@ -90,7 +90,7 @@ done=False
 while not done:
 	if mode == "ambient":
 		if not mixer.music.get_busy():
-			play_wav('effects/'+random.choice(folly));
+			play_wav('effects/'+random.choice(ambients));
 
 	sec = time.localtime(time.time()).tm_sec
 	if(sec % validation_sec == 0 and sec != used_sec):
@@ -112,39 +112,47 @@ while not done:
 	# doing a bitwise AND of the buttons number
 	# and the predefined constant for that button.
 	if (buttons & cwiid.BTN_LEFT):
+		mode = "folly"
 		play_wav('effects/lair.wav')
 		print 'Left pressed'
 		time.sleep(button_delay)
 
 	if(buttons & cwiid.BTN_RIGHT):
+		mode = "folly"
 		play_wav('effects/atmosphere.wav')
 		print 'Right pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_UP):
+		mode = "folly"
 		print 'Up pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_DOWN):
+		mode = "folly"
 		print 'Down pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_1):
+		mode = "folly"
 		play_wav('effects/thunder.wav')
 		print 'Button 1 pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_2):
+		mode = "folly"
 		play_wav('effects/sadtrumbone.wav')
 		print 'Button 2 pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_A):
+		mode = "folly"
 		player = OMXPlayer('videos/stag.mp4', '-o local')
 		print 'Button A pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_B):
+		mode = "folly"
 		player = OMXPlayer('videos/dark-mark.mp4', '-o local')
 		print 'Button B pressed'
 		time.sleep(button_delay)
@@ -156,6 +164,7 @@ while not done:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_MINUS):
+		mode = "none"
 		print 'Minus Button pressed'
 		time.sleep(button_delay)
 		# stop any music or video files that might be playing
