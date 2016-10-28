@@ -150,7 +150,7 @@ while not done:
 		print 'Minus Button pressed'
 		time.sleep(button_delay)
 		# stop any music or video files that might be playing
-		mixer.music.stop()
+		mixer.music.fadeout()
 		player.stop()
 
 	if (buttons & cwiid.BTN_PLUS):
