@@ -88,6 +88,10 @@ used_sec = 0
 done=False
 
 while not done:
+	if mode == "ambient"
+		if not mixer.music.getbusy(0):
+			play_wav('effects/'+random.choice(folly));
+
 	sec = time.localtime(time.time()).tm_sec
 	if(sec % validation_sec == 0 and sec != used_sec):
 		wii = validate_connection(wii)
@@ -169,7 +173,5 @@ while not done:
 			if event.key == pygame.K_ESCAPE:
 				done = True
 		time.sleep(0.01)
-if mode == "ambient"
-	if not mixer.music.getbusy(0):
-		play_wav('effects/'+random.choice(folly));
+
 pygame.quit()
