@@ -145,7 +145,7 @@ while not done:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_HOME):
-		play_wave('effects/'+random.choice(ambients))
+		play_wav('effects/'+random.choice(ambients))
 		print 'Home Button pressed'
 		time.sleep(button_delay)
 
