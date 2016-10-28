@@ -89,7 +89,7 @@ done=False
 
 while not done:
 	if mode == "ambient":
-		if not mixer.music.get_busy(0):
+		if not mixer.music.get_busy():
 			play_wav('effects/'+random.choice(folly));
 
 	sec = time.localtime(time.time()).tm_sec
