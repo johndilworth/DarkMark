@@ -77,6 +77,7 @@ wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
 mixer.init()
+player = OMXPlayer('videos/stag.mp4', '-o local')
 
 used_sec = 0
 
@@ -150,8 +151,7 @@ while not done:
 		time.sleep(button_delay)
 		# stop any music or video files that might be playing
 		mixer.music.stop()
-		if player:
-			player.stop()
+		player.stop()
 
 	if (buttons & cwiid.BTN_PLUS):
 		print 'Plus Button pressed'
