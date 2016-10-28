@@ -76,6 +76,8 @@ for i in [1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 0]:
 wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
+ambients = ["atmosphere.wav", "lair.wav"]
+
 mixer.init()
 player = OMXPlayer('videos/stag.mp4', '-o local')
 
@@ -143,6 +145,7 @@ while not done:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_HOME):
+		play_wave('effects/'+random.choice(ambients))
 		print 'Home Button pressed'
 		time.sleep(button_delay)
 
