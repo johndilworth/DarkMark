@@ -13,7 +13,7 @@ pygame.init()
 pygame.mouse.set_visible(False)
 screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 screen.fill((0,0,0))
-mode = ""
+mode = "ambient"
 
 button_delay = 0.6
 validation_sec = 5
@@ -88,7 +88,7 @@ used_sec = 0
 done=False
 
 while not done:
-	if mode == "ambient"
+	if mode == "ambient":
 		if not mixer.music.getbusy(0):
 			play_wav('effects/'+random.choice(folly));
 
