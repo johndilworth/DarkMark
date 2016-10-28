@@ -13,7 +13,7 @@ pygame.init()
 pygame.mouse.set_visible(False)
 screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 screen.fill((0,0,0))
-
+mode = ""
 
 button_delay = 0.6
 validation_sec = 5
@@ -77,6 +77,7 @@ wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
 ambients = ["atmosphere.wav", "lair.wav"]
+folly = ['sadtrumbone.wav', 'thunder.wav']
 
 mixer.init()
 player = OMXPlayer('videos/stag.mp4', '-o local')
@@ -145,6 +146,7 @@ while not done:
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_HOME):
+		mode = "ambient"
 		play_wav('effects/'+random.choice(ambients))
 		print 'Home Button pressed'
 		time.sleep(button_delay)
@@ -167,5 +169,7 @@ while not done:
 			if event.key == pygame.K_ESCAPE:
 				done = True
 		time.sleep(0.01)
-
+if mode == "ambient"
+	if not mixer.music.getbusy(0):
+		play_wav('effects/'+random.choice(folly));
 pygame.quit()
