@@ -104,10 +104,12 @@ while not done:
 	# doing a bitwise AND of the buttons number
 	# and the predefined constant for that button.
 	if (buttons & cwiid.BTN_LEFT):
+		play_wav('effects/lair.wav')
 		print 'Left pressed'
 		time.sleep(button_delay)
 
 	if(buttons & cwiid.BTN_RIGHT):
+		play_wav('effects/atmosphere.wav')
 		print 'Right pressed'
 		time.sleep(button_delay)
 
