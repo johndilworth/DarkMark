@@ -77,6 +77,7 @@ wii.led = 6
 wii.rpt_mode = cwiid.RPT_BTN
 
 ambients = ["atmosphere.wav", "lair.wav"]
+music = ["darkmark.wav","voldemort.wav","maze.wav"]
 folly = ['sadtrumbone.wav', 'thunder.wav']
 
 mixer.init()
@@ -91,7 +92,9 @@ while not done:
 	if mode == "ambient":
 		if not mixer.music.get_busy():
 			play_wav('effects/'+random.choice(ambients));
-
+	if mode == "music":
+		if not mixer.music.get_busy():
+			play_wav('effects/'+random.choice(music));
 	sec = time.localtime(time.time()).tm_sec
 	if(sec % validation_sec == 0 and sec != used_sec):
 		wii = validate_connection(wii)
@@ -113,23 +116,26 @@ while not done:
 	# and the predefined constant for that button.
 	if (buttons & cwiid.BTN_LEFT):
 		mode = "folly"
-		play_wav('effects/lair.wav')
+
 		print 'Left pressed'
 		time.sleep(button_delay)
 
 	if(buttons & cwiid.BTN_RIGHT):
 		mode = "folly"
-		play_wav('effects/atmosphere.wav')
+
 		print 'Right pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_UP):
-		mode = "folly"
+		mode = "music"
+		play_wav('effects/'+random.choice(music))
 		print 'Up pressed'
 		time.sleep(button_delay)
 
 	if (buttons & cwiid.BTN_DOWN):
 		mode = "folly"
+		player = OMXPlayer('videos/underpants.mp4', '-o local')
+		play_wav('effects/thunder.wav')
 		print 'Down pressed'
 		time.sleep(button_delay)
 
