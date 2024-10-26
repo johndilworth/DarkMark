@@ -22,14 +22,30 @@ def connect_wimote():
     try:
         print('Press 1 + 2 on your Wii Remote now ...')
         time.sleep(1)
-        wiimote = cwiid.Wiimote()
-    except RuntimeError:
-        return connect_wimote()
-
-    print('Wii Remote connected...\n')
-    wiimote.led = 6
-    wiimote.rpt_mode = cwiid.RPT_BTN
-    return wiimote
+        
+        # Add some retries
+        attempts = 0
+        while attempts < 3:
+            try:
+                print(f"Attempt {attempts + 1} to connect...")
+                wiimote = cwiid.Wiimote()
+                print('Wii Remote connected...\n')
+                wiimote.led = 6
+                wiimote.rpt_mode = cwiid.RPT_BTN
+                return wiimote
+            except RuntimeError as e:
+                print(f"Error: {e}")
+                attempts += 1
+                print("Waiting 2 seconds before trying again...")
+                time.sleep(2)
+        
+        if attempts >= 3:
+            print("Failed to connect after 3 attempts. Please try again.")
+            return None
+            
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return None
 
 def validate_connection(wiimote):
     try:
@@ -57,7 +73,18 @@ def stop_video():
     player.stop()
 
 # Connect to the Wii Remote. If it times out then quit.
+# In your main code, add this check:
 wii = connect_wimote()
+if wii is None:
+    print("Could not connect to Wii Remote. Please check:")
+    print("1. Bluetooth is enabled")
+    print("2. Wii Remote has fresh batteries")
+    print("3. You're pressing and holding 1+2 when prompted")
+    sys.exit(1)
+
+
+
+
 time.sleep(1)
 
 for i in range(4):
