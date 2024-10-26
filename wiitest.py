@@ -9,6 +9,9 @@ def connect_wimote():
     print('Please wait 2 seconds before pressing 1 + 2...')
     time.sleep(2)
     
+    # Set the timeout through environment variable
+    os.environ['WIIMOTE_TIMEOUT'] = '15'
+    
     attempts = 0
     max_attempts = 3
     
@@ -17,8 +20,8 @@ def connect_wimote():
             print(f'\nAttempt {attempts + 1} of {max_attempts}')
             print('Press and hold 1 + 2 on your Wii Remote now...')
             
-            # Set a reasonable timeout
-            wiimote = cwiid.Wiimote(timeout=5)
+            # Try to connect without timeout parameter
+            wiimote = cwiid.Wiimote()
             
             # If we get here, connection was successful
             print('\nWii Remote connected successfully!')
