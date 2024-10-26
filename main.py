@@ -21,42 +21,15 @@ validation_sec = 5
 def connect_wimote():
     try:
         print('Press 1 + 2 on your Wii Remote now ...')
-        print('Make sure the Wii Remote has fresh batteries')
-        print('Hold 1 + 2 until the connection is made...')
-        
-        # Set bluetooth timeout
-        os.environ['WIIMOTE_TIMEOUT'] = '30'
-        
-        attempts = 0
-        while attempts < 3:
-            try:
-                print(f"\nAttempt {attempts + 1} to connect...")
-                # Try to connect with a longer timeout
-                wiimote = cwiid.Wiimote(timeout=15)
-                print('Wii Remote connected...\n')
-                wiimote.led = 6
-                wiimote.rpt_mode = cwiid.RPT_BTN
-                return wiimote
-            except RuntimeError as e:
-                print(f"Error: {e}")
-                attempts += 1
-                if attempts < 3:
-                    print("Waiting 3 seconds before trying again...")
-                    print("Please press 1 + 2 again when prompted")
-                    time.sleep(3)
-        
-        if attempts >= 3:
-            print("\nFailed to connect after 3 attempts.")
-            print("Please check:")
-            print("1. Bluetooth is enabled (run 'sudo systemctl status bluetooth')")
-            print("2. Wii Remote has fresh batteries")
-            print("3. No other devices are connected to the Wii Remote")
-            return None
-            
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        return None
-      
+        time.sleep(1)
+        wiimote = cwiid.Wiimote()
+    except RuntimeError:
+        return connect_wimote()
+
+    print('Wii Remote connected...\n')
+    wiimote.led = 6
+    wiimote.rpt_mode = cwiid.RPT_BTN
+    return wiimote
 
 def validate_connection(wiimote):
     try:
@@ -84,18 +57,7 @@ def stop_video():
     player.stop()
 
 # Connect to the Wii Remote. If it times out then quit.
-# In your main code, add this check:
 wii = connect_wimote()
-if wii is None:
-    print("Could not connect to Wii Remote. Please check:")
-    print("1. Bluetooth is enabled")
-    print("2. Wii Remote has fresh batteries")
-    print("3. You're pressing and holding 1+2 when prompted")
-    sys.exit(1)
-
-
-
-
 time.sleep(1)
 
 for i in range(4):
